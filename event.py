@@ -1,19 +1,25 @@
+import logging
+
+# Configure the logging system
+logging.basicConfig(level=logging.DEBUG,  # Log messages of DEBUG level and above
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 class Event:
-    def _init_(self, payload: dict):
+    def __init__(self, payload: dict):
         self.payload = payload
-        print(f"Debug: Event created with payload: {self.payload}")
+        logging.debug(f"Event created with payload: {self.payload}")
 
 class ApplicationSentEvent(Event):
-    def _init_(self, payload: dict):
-        super()._init_(payload)
-        print(f"Event: Application submitted for {payload['student']}.")
+    def __init__(self, payload: dict):
+        super().__init__(payload)
+        logging.info(f"Application submitted for {payload['student']}.")
 
 class ApplicationAcceptedEvent(Event):
-    def _init_(self, payload: dict):
-        super()._init_(payload)
-        print(f"Event: Application accepted for {payload['student']}.")
+    def __init__(self, payload: dict):
+        super().__init__(payload)
+        logging.info(f"Application accepted for {payload['student']}.")
 
 class ApplicationRejectedEvent(Event):
-    def _init_(self, payload: dict):
-        super()._init_(payload)
-        print(f"Event: Application rejected for {payload['student']}.")
+    def __init__(self, payload: dict):
+        super().__init__(payload)
+        logging.info(f"Application rejected for {payload['student']}.")
